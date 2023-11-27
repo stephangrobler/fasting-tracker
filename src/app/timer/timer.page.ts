@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 import { Subscription, interval } from 'rxjs';
 import {
   IonButton,
@@ -80,7 +79,7 @@ export class TimerPage implements OnInit {
     if (this.isRunning) {
       this.end = new Date();
       if (this.start) {
-        this.sessions.push({
+        this.sessions.unshift({
           start: this.start,
           end: this.end,
           elapsedTime: this.elapsedTime,

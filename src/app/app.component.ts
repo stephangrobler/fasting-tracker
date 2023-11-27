@@ -14,11 +14,6 @@ import {
   IonIcon,
   IonLabel,
   IonRouterOutlet,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonCard,
-  IonButton,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -58,12 +53,7 @@ import {
     IonItem,
     IonIcon,
     IonLabel,
-    IonRouterOutlet,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonCard,
-    IonButton,
+    IonRouterOutlet
   ],
 })
 export class AppComponent {
