@@ -51,6 +51,19 @@ export class TimerPage implements OnInit {
   isRunning = false;
   sessions: [{ start: Date; end: Date; elapsedTime: number }?] = [];
 
+  slots = [
+    { type: 'fast', duration: 16, end: 16 },
+    { type: 'feast', duration: 8, end: 24 },
+    { type: 'fast', duration: 20, end: 44 },
+    { type: 'feast', duration: 4, end: 48 },
+    { type: 'fast', duration: 36, end: 84 },
+    { type: 'feast', duration: 12, end: 96 },
+    { type: 'fast', duration: 16, end: 112 },
+    { type: 'feast', duration: 8, end: 120 },
+    { type: 'fast', duration: 20, end: 140 },
+    { type: 'feast', duration: 4, end: 144 },
+  ];
+
   constructor() {}
 
   ngOnInit() {
@@ -136,6 +149,62 @@ export class TimerPage implements OnInit {
           }
         });
         this.isRunning = true;
+      }
+    }
+  }
+
+  hoursSinceSpecificTime(targetDay: string, targetTime: string) {
+    const daysOfWeek = [
+      'sunday',
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+    ];
+
+    const currentDateTime = new Date();
+    const currentDay = currentDateTime
+      .toLocaleString('en-us', { weekday: 'long' })
+      .toLowerCase();
+    const currentTime =
+      currentDateTime.getHours() * 60 + currentDateTime.getMinutes(); // Convert to minutes for easy comparison
+
+    const targetDayIndex = daysOfWeek.indexOf(targetDay.toLowerCase());
+    const currentDayIndex = daysOfWeek.indexOf(currentDay);
+
+    if (targetDayIndex === -1) {
+      return 'Invalid target day';
+    }
+
+    const daysDifference = (currentDayIndex - targetDayIndex + 7) % 7;
+    const minutesSinceTargetTime = currentTime - this.parseTime(targetTime);
+    const hoursSinceTargetTime =
+      daysDifference * 24 + minutesSinceTargetTime / 60;
+
+    return hoursSinceTargetTime;
+  }
+
+  // Function to parse time in HH:mm format and convert it to minutes
+  parseTime(time: string) {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+  }
+
+  getSlot(slots: any) {
+    const targetDay = 'Sunday';
+    const targetTime = '20:00';
+
+    const hoursSince = this.hoursSinceSpecificTime(targetDay, targetTime);
+    console.log(
+      `Hours since ${targetDay} ${targetTime}:`,
+      Math.floor(+hoursSince)
+    );
+    for (let index = 0; index < slots.length; index++) {
+      const element = slots[index];
+      if (hoursSince < element.end) {
+        return element.type;
       }
     }
   }
