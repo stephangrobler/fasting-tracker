@@ -1,0 +1,7 @@
+{
+  "name": "fasting-tracker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
