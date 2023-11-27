@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>timer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">timer</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" size-sm="6" offset-sm="3">
+        <ion-card>
+          
+          <ion-card-content class="ion-text-center">
+            <div class="timer-button">
+              <div class="clock-display">
+                {{ formatElapsedTime(elapsedTime) }}
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="onStart()" expand="block" fill="clear" shape="round">
+          Start
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="onEnd()" expand="block" fill="clear" shape="round">
+          End
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item *ngFor="let session of sessions">
+            <ion-label>{{ formatElapsedTime(session!.elapsedTime)}} </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
