@@ -3,18 +3,46 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Subscription, interval } from 'rxjs';
-import { IonButton, IonCard, IonCol, IonGrid, IonRow } from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonListHeader,
+  IonRow,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.page.html',
   styleUrls: ['./timer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, IonGrid,
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonGrid,
     IonRow,
     IonCol,
     IonCard,
-    IonButton,],
+    IonButton,
+    IonList,
+    IonListHeader,
+    IonLabel,
+    IonItem,
+    IonCardContent,
+    IonTitle,
+    IonToolbar,
+    IonHeader,
+    IonContent,
+  ],
 })
 export class TimerPage implements OnInit {
   start: Date | null = null;
@@ -40,7 +68,11 @@ export class TimerPage implements OnInit {
         }
       });
       this.isRunning = true;
-      this.persistActiveSession({start: this.start, end: null, elapsedTime: 0});
+      this.persistActiveSession({
+        start: this.start,
+        end: null,
+        elapsedTime: 0,
+      });
     }
   }
 
@@ -76,12 +108,12 @@ export class TimerPage implements OnInit {
     return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
   }
 
-  persistSessions(sessions: any){
+  persistSessions(sessions: any) {
     localStorage.setItem('fasting-sessions', JSON.stringify(this.sessions));
   }
 
-  retrieveSessions(){
-    if (localStorage.getItem('fasting-sessions')){
+  retrieveSessions() {
+    if (localStorage.getItem('fasting-sessions')) {
       this.sessions = JSON.parse(localStorage.getItem('fasting-sessions')!);
     } else {
       localStorage.setItem('fasting-sessions', JSON.stringify([]));
@@ -92,12 +124,13 @@ export class TimerPage implements OnInit {
     localStorage.setItem('active-fasting-session', JSON.stringify(session));
   }
 
-  retrieveActiveSession(){
-    if (localStorage.getItem('active-fasting-session')){
-      const session: {start: Date, end: Date, elapsedTime: number} = JSON.parse(localStorage.getItem('active-fasting-session')!);
+  retrieveActiveSession() {
+    if (localStorage.getItem('active-fasting-session')) {
+      const session: { start: Date; end: Date; elapsedTime: number } =
+        JSON.parse(localStorage.getItem('active-fasting-session')!);
       console.log(session);
-      if (session?.start){
-        this.start = new Date(session.start);        
+      if (session?.start) {
+        this.start = new Date(session.start);
         this.timeSubscription = interval(1000).subscribe((time) => {
           if (this.start) {
             this.elapsedTime = new Date().getTime() - this.start?.getTime();
@@ -107,5 +140,4 @@ export class TimerPage implements OnInit {
       }
     }
   }
-
 }

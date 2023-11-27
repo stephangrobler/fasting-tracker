@@ -10,9 +10,6 @@
       <ion-title size="large">timer</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-button expand="block">
-     Test rendering
-  </ion-button>
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12" size-sm="6" offset-sm="3">
@@ -30,14 +27,14 @@
     </ion-row>
     <ion-row>
       <ion-col size="12" *ngIf="!isRunning">
-        <ion-button (click)="onStart()" expand="block" >
+        <ion-button (click)="onStart()" color="success" expand="block" >
           Start
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="12" *ngIf="isRunning">
-        <ion-button (click)="onEnd()" expand="block">
+        <ion-button (click)="onEnd()" color="danger" expand="block">
           End
         </ion-button>
       </ion-col>
