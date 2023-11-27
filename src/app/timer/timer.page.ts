@@ -3,13 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Subscription, interval } from 'rxjs';
+import { IonButton, IonCard, IonCol, IonGrid, IonRow } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.page.html',
   styleUrls: ['./timer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [IonicModule, CommonModule, FormsModule, IonGrid,
+    IonRow,
+    IonCol,
+    IonCard,
+    IonButton,],
 })
 export class TimerPage implements OnInit {
   start: Date | null = null;
