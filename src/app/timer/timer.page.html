@@ -26,15 +26,15 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="12">
-        <ion-button (click)="onStart()" expand="block" fill="clear" shape="round">
+      <ion-col size="12" *ngIf="!isRunning">
+        <ion-button (click)="onStart()" expand="block" >
           Start
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="12">
-        <ion-button (click)="onEnd()" expand="block" fill="clear" shape="round">
+      <ion-col size="12" *ngIf="isRunning">
+        <ion-button (click)="onEnd()" expand="block">
           End
         </ion-button>
       </ion-col>
@@ -42,6 +42,10 @@
     <ion-row>
       <ion-col size="12">
         <ion-list>
+          <ion-list-header>
+            <ion-label>Past Sessions</ion-label>
+            
+          </ion-list-header>
           <ion-item *ngFor="let session of sessions">
             <ion-label>{{ formatElapsedTime(session!.elapsedTime)}} </ion-label>
           </ion-item>
