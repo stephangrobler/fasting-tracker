@@ -140,7 +140,7 @@ export class TimerPage implements OnInit {
     if (localStorage.getItem('active-fasting-session')) {
       const session: { start: Date; end: Date; elapsedTime: number } =
         JSON.parse(localStorage.getItem('active-fasting-session')!);
-      console.log(session);
+      
       if (session?.start) {
         this.start = new Date(session.start);
         this.timeSubscription = interval(1000).subscribe((time) => {
@@ -195,12 +195,9 @@ export class TimerPage implements OnInit {
   getSlot(slots: any) {
     const targetDay = 'Sunday';
     const targetTime = '20:00';
-
+    
     const hoursSince = this.hoursSinceSpecificTime(targetDay, targetTime);
-    console.log(
-      `Hours since ${targetDay} ${targetTime}:`,
-      Math.floor(+hoursSince)
-    );
+    
     for (let index = 0; index < slots.length; index++) {
       const element = slots[index];
       if (hoursSince < element.end) {
