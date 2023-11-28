@@ -27,8 +27,9 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,400;1,100;1,400&family=Roboto+Slab:wght@900&display=swap");
 
-body {
-  font-family: "Noto Sans", sans-serif;
+:root {
+  --ion-default-font: "Noto Sans", sans-serif;
+  --ion-font-family: "Noto Sans", sans-serif;
 }
 
 h1,
